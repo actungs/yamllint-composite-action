@@ -1,6 +1,9 @@
 ---
 name: "beiertu/run_yamllint"
 description: "Github action to lint YAML files using yamllint"
+branding:
+  icon: 'check'
+  color: 'green'
 inputs:
   files_or_dirs:
     description: "A space separated list of files or directories to be checked"
