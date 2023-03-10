@@ -25,6 +25,10 @@ inputs:
     description: "Output only error level problems"
     required: false
     default: "false"
+  format:
+    description: "The format for parsing output. Available options: parsable, standard, colored, github, auto"
+    required: false
+    default: "auto"
 outputs:
   lint_output:
     description: "Result from yamllint"
@@ -72,7 +76,7 @@ runs:
         strict: ${{ steps.params.outputs.yamllint_strict }}
         no_warnings: ${{ steps.params.outputs.yamllint_no_warnings }}
       run: |
-        yamllint ${{ inputs.files_or_dirs }} --format auto \
+        yamllint ${{ inputs.files_or_dirs }} --format ${{ inputs.format }} \
           ${{ env.config_file }} \
           ${{ env.config_data }} \
           ${{ env.strict }} \

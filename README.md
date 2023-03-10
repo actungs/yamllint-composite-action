@@ -28,17 +28,30 @@ jobs:
         run: echo ${{ steps.yamllint.outputs.lint_output }}
 ```
 
+### Version
+
+This action also provide specific versions to be used with. For example
+
+```yaml
+- uses: beiertu/yamllint-composite-action@v1.0.0
+```
+
+See [this action releases][releases] for all available versions.
+
+[releases]: https://github.com/beiertu-mms/yamllint-composite-action/releases
+
 ## Inputs
 
 This action accepts the following inputs.
 
-| Name            | Description                                                 | Required |          Default          |
-|-----------------|-------------------------------------------------------------|:--------:|:-------------------------:|
-| `files_or_dirs` | A space separated list of files or directories to be linted |    no    | current working directory |
-| `config_file`   | Path to a custom configuration file                         |    no    |            ""             |
-| `config_data`   | Custom configuration (as YAML source)                       |    no    |            ""             |
-| `strict`        | Return non-zero exit code on warnings as well as errors     |    no    |           false           |
-| `no_warnings`   | Output only error level problems                            |    no    |           false           |
+| Name            | Description                                                                                 | Required |          Default          |
+|-----------------|---------------------------------------------------------------------------------------------|:--------:|:-------------------------:|
+| `files_or_dirs` | A space separated list of files or directories to be linted                                 |    no    | current working directory |
+| `config_file`   | Path to a custom configuration file                                                         |    no    |            ""             |
+| `config_data`   | Custom configuration (as YAML source)                                                       |    no    |            ""             |
+| `strict`        | Return non-zero exit code on warnings as well as errors                                     |    no    |           false           |
+| `no_warnings`   | Output only error level problems                                                            |    no    |           false           |
+| `format`        | The format for parsing output. Available options: parsable, standard, colored, github, auto |    no    |           auto            |
 
 ## Outputs
 
