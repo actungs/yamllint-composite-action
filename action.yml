@@ -1,9 +1,9 @@
 ---
-name: "beiertu/run_yamllint"
+name: "Yamllint Composite Action"
 description: "Github action to lint YAML files using yamllint"
 branding:
   icon: 'check'
-  color: 'green'
+  color: 'yellow'
 inputs:
   files_or_dirs:
     description: "A space separated list of files or directories to be checked"
