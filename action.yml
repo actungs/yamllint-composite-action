@@ -24,12 +24,10 @@ inputs:
     description: "Output only error level problems"
     required: false
     default: "false"
-#  -f {parsable,standard,colored,github,auto}, --format {parsable,standard,colored,github,auto}
-#                        format for parsing output
 outputs:
   lint_output:
     description: "Result from yamllint"
-    value: ${{ steps.lint.outputs.result }}
+    value: ${{ steps.lint.outputs.lint_output }}
 runs:
   using: "composite"
   steps:
