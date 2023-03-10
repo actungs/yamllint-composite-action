@@ -1,8 +1,6 @@
 ---
 name: "beiertu/run_yamllint"
-description: |
-  A composite action to run yamllint.
-  See the yamllint documentation at https://yamllint.readthedocs.io/en/stable/index.html for more information.
+description: "Github action to lint YAML files using yamllint"
 inputs:
   files_or_dirs:
     description: "A space separated list of files or directories to be checked"
