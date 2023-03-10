@@ -1,5 +1,5 @@
 ---
-name: "Run yamllint"
+name: "beiertu/run_yamllint"
 description: |
   A composite action to run yamllint.
   See the yamllint documentation at https://yamllint.readthedocs.io/en/stable/index.html for more information.
