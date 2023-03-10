@@ -27,7 +27,7 @@ inputs:
 outputs:
   lint_output:
     description: "Result from yamllint"
-    value: ${{ steps.lint.outputs.lint_output }}
+    value: ${{ steps.lint.outputs.result }}
 runs:
   using: "composite"
   steps:
@@ -79,7 +79,7 @@ runs:
 
         cat result.txt
 
-        echo "lint_output<<EOF" >> "$GITHUB_OUTPUT"
+        echo "result<<EOF" >> "$GITHUB_OUTPUT"
         cat result.txt >> "$GITHUB_OUTPUT"
         echo "EOF" >> "$GITHUB_OUTPUT"
       shell: bash

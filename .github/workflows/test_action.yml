@@ -1,8 +1,8 @@
 ---
 on:
   push:
-#    branches:
-#      - master
+    branches:
+      - master
 jobs:
   test_action:
     name: Test this action
@@ -13,7 +13,7 @@ jobs:
 
       - name: Run action
         id: run_action
-        uses: beiertu-mms/yamllint-composite-action@fix/fix-lint-output
+        uses: beiertu-mms/yamllint-composite-action@master
         with:
           files_or_dirs: .github/test
 
