@@ -73,14 +73,13 @@ runs:
         strict: ${{ steps.params.outputs.yamllint_strict }}
         no_warnings: ${{ steps.params.outputs.yamllint_no_warnings }}
       run: |
-        result=$(yamllint ${{ inputs.files_or_dirs }} \
+        yamllint ${{ inputs.files_or_dirs }} \
           ${{ env.config_file }} \
           ${{ env.config_data }} \
           ${{ env.strict }} \
-          ${{ env.no_warnings }} \
-          | sed 's/::group:://g;s/::endgroup:://g')
+          ${{ env.no_warnings }} > result.txt
 
-        echo "$result"
+        cat result.txt
 
-        echo "lint_output=$result" >> "$GITHUB_OUTPUT"
+        echo "lint_output=test" >> "$GITHUB_OUTPUT"
       shell: bash
