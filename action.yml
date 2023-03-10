@@ -77,6 +77,8 @@ runs:
           ${{ env.config_file }} \
           ${{ env.config_data }} \
           ${{ env.strict }} \
-          ${{ env.no_warnings }})
+          ${{ env.no_warnings }} \
+          | sed 's/::group:://g;s/::endgroup:://g')
+
         echo "lint_output=$result" >> "$GITHUB_OUTPUT"
       shell: bash
