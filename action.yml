@@ -71,7 +71,7 @@ runs:
         strict: ${{ steps.params.outputs.yamllint_strict }}
         no_warnings: ${{ steps.params.outputs.yamllint_no_warnings }}
       run: |
-        yamllint ${{ inputs.files_or_dirs }} --format standard \
+        yamllint ${{ inputs.files_or_dirs }} --format github \
           ${{ env.config_file }} \
           ${{ env.config_data }} \
           ${{ env.strict }} \
