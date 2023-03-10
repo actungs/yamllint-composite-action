@@ -80,5 +80,7 @@ runs:
           ${{ env.no_warnings }} \
           | sed 's/::group:://g;s/::endgroup:://g')
 
+        echo "$result"
+
         echo "lint_output=$result" >> "$GITHUB_OUTPUT"
       shell: bash
