@@ -17,29 +17,36 @@ jobs:
     runs-on: ubuntu-latest
     name: Lint YAML files
     steps:
-      - uses: actions/checkout@v3
-      - uses: beiertu/yamllint-composite-action@master
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Lint YAML
+        id: yamllint
+        uses: beiertu/yamllint-composite-action@master
+
+      - name: Use linter output
+        run: echo ${{ steps.yamllint.outputs.lint_output }}
 ```
 
 ## Inputs
 
 This action accepts the following inputs.
 
-| Name          | Description                                                 | Required |          Default          |
-|---------------|-------------------------------------------------------------|:--------:|:-------------------------:|
-| files_or_dirs | A space separated list of files or directories to be linted |    no    | current working directory |
-| config_file   | Path to a custom configuration file                         |    no    |            ""             |
-| config_data   | Custom configuration (as YAML source)                       |    no    |            ""             |
-| strict        | Return non-zero exit code on warnings as well as errors     |    no    |           false           |
-| no_warnings   | Output only error level problems                            |    no    |           false           |
+| Name            | Description                                                 | Required |          Default          |
+|-----------------|-------------------------------------------------------------|:--------:|:-------------------------:|
+| `files_or_dirs` | A space separated list of files or directories to be linted |    no    | current working directory |
+| `config_file`   | Path to a custom configuration file                         |    no    |            ""             |
+| `config_data`   | Custom configuration (as YAML source)                       |    no    |            ""             |
+| `strict`        | Return non-zero exit code on warnings as well as errors     |    no    |           false           |
+| `no_warnings`   | Output only error level problems                            |    no    |           false           |
 
 ## Outputs
 
 This action returns the following outputs.
 
-| Name        | Description                |
-|-------------|----------------------------|
-| lint_output | Result from yamllint check |
+| Name          | Description                |
+|---------------|----------------------------|
+| `lint_output` | Result from yamllint check |
 
 ## License
 
