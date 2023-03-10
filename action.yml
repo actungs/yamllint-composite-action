@@ -1,0 +1,82 @@
+---
+name: "Run yamllint"
+description: |
+  A composite action to run yamllint.
+  See the yamllint documentation at https://yamllint.readthedocs.io/en/stable/index.html for more information.
+inputs:
+  files_or_dirs:
+    description: "A space separated list of files or directories to be checked"
+    required: false
+    default: "."
+  config_file:
+    description: "Path to a custom configuration file"
+    required: false
+    default: ""
+  config_data:
+    description: "Custom configuration (as YAML source)"
+    required: false
+    default: ""
+  strict:
+    description: "Return non-zero exit code on warnings as well as errors"
+    required: false
+    default: "false"
+  no_warnings:
+    description: "Output only error level problems"
+    required: false
+    default: "false"
+#  -f {parsable,standard,colored,github,auto}, --format {parsable,standard,colored,github,auto}
+#                        format for parsing output
+outputs:
+  lint_output:
+    description: "Result from yamllint"
+    value: ${{ steps.lint.outputs.result }}
+runs:
+  using: "composite"
+  steps:
+    - run: pip install --user yamllint
+      shell: bash
+
+    - id: params
+      run: |
+        YAMLLINT_CONFIG_FILE=""
+        if [[ -n "${{ inputs.config_file }}" ]]; then
+          YAMLLINT_CONFIG_FILE="--config-file ${{ inputs.config_file }}"
+        fi
+
+        YAMLLINT_CONFIG_DATA=""
+        if [[ -n "${{ inputs.config_data }}" ]]; then
+          YAMLLINT_CONFIG_DATA="--config-data ${{ inputs.config_data }}"
+        fi
+
+        YAMLLINT_STRICT=""
+        if [[ "${{ inputs.strict }}" == "true" ]]; then
+          YAMLLINT_STRICT="--strict"
+        fi
+
+        YAMLLINT_NO_WARNINGS=""
+        if [[ "${{ inputs.no_warnings }}" == "true" ]]; then
+          YAMLLINT_NO_WARNINGS="--no-warnings"
+        fi
+
+        {
+          echo "yamllint_config_file=$YAMLLINT_CONFIG_FILE"
+          echo "yamllint_config_data=$YAMLLINT_CONFIG_DATA"
+          echo "yamllint_strict=$YAMLLINT_STRICT"
+          echo "yamllint_no_warnings=$YAMLLINT_NO_WARNINGS"
+        } >> "$GITHUB_OUTPUT"
+      shell: bash
+
+    - id: lint
+      env:
+        config_file: ${{ steps.params.outputs.yamllint_config_file }}
+        config_data: ${{ steps.params.outputs.yamllint_config_data }}
+        strict: ${{ steps.params.outputs.yamllint_strict }}
+        no_warnings: ${{ steps.params.outputs.yamllint_no_warnings }}
+      run: |
+        result=$(yamllint ${{ inputs.files_or_dirs }} \
+          ${{ env.config_file }} \
+          ${{ env.config_data }} \
+          ${{ env.strict }} \
+          ${{ env.no_warnings }})
+        echo "lint_output=$result" >> "$GITHUB_OUTPUT"
+      shell: bash
