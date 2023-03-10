@@ -24,8 +24,6 @@ inputs:
     description: "Output only error level problems"
     required: false
     default: "false"
-#  -f {parsable,standard,colored,github,auto}, --format {parsable,standard,colored,github,auto}
-#                        format for parsing output
 outputs:
   lint_output:
     description: "Result from yamllint"
@@ -73,14 +71,16 @@ runs:
         strict: ${{ steps.params.outputs.yamllint_strict }}
         no_warnings: ${{ steps.params.outputs.yamllint_no_warnings }}
       run: |
-        result=$(yamllint ${{ inputs.files_or_dirs }} \
+        yamllint ${{ inputs.files_or_dirs }} --format auto \
           ${{ env.config_file }} \
           ${{ env.config_data }} \
           ${{ env.strict }} \
-          ${{ env.no_warnings }} \
-          | sed 's/::group:://g;s/::endgroup:://g')
+          ${{ env.no_warnings }} > result.txt
 
-        echo "$result"
+        echo "Yamllint result:"
+        cat result.txt
 
-        echo "lint_output=$result" >> "$GITHUB_OUTPUT"
+        echo "result<<EOF" >> "$GITHUB_OUTPUT"
+        cat result.txt >> "$GITHUB_OUTPUT"
+        echo "EOF" >> "$GITHUB_OUTPUT"
       shell: bash
