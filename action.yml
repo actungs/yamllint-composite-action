@@ -48,7 +48,7 @@ runs:
 
         YAMLLINT_CONFIG_DATA=""
         if [[ -n "${{ inputs.config_data }}" ]]; then
-          YAMLLINT_CONFIG_DATA="--config-data ${{ inputs.config_data }}"
+          YAMLLINT_CONFIG_DATA="--config-data '${{ inputs.config_data }}'"
         fi
 
         YAMLLINT_STRICT=""
