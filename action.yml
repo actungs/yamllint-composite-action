@@ -32,7 +32,7 @@ inputs:
 outputs:
   lint_output:
     description: "Result from yamllint"
-    value: ${{ steps.lint.outputs.result }}
+    value: ${{ steps.output_result.outputs.result }}
 runs:
   using: "composite"
   steps:
@@ -75,13 +75,18 @@ runs:
         config_data: ${{ steps.params.outputs.yamllint_config_data }}
         strict: ${{ steps.params.outputs.yamllint_strict }}
         no_warnings: ${{ steps.params.outputs.yamllint_no_warnings }}
-      run: |
-        yamllint ${{ inputs.files_or_dirs }} --format ${{ inputs.format }} \
-          ${{ env.config_file }} \
-          ${{ env.config_data }} \
-          ${{ env.strict }} \
-          ${{ env.no_warnings }} > result.txt
+      run: >-
+        yamllint ${{ inputs.files_or_dirs }}
+        --format ${{ inputs.format }}
+        ${{ env.config_file }}
+        ${{ env.config_data }}
+        ${{ env.strict }}
+        ${{ env.no_warnings }}
+        > result.txt
+      shell: bash
 
+    - id: output_result
+      run: |
         echo "Yamllint result:"
         cat result.txt
 
