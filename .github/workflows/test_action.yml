@@ -16,6 +16,7 @@ jobs:
         uses: beiertu-mms/yamllint-composite-action@master
         with:
           files_or_dirs: .github/test
+          config_data: '{extends: default, rules: {line-length: {max: 120}}}'
 
       - name: Output
         run: echo "${{ steps.run_action.outputs.lint_output }}"
