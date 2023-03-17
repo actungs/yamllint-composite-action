@@ -22,23 +22,16 @@ jobs:
 
       - name: Lint YAML
         id: yamllint
-        uses: beiertu/yamllint-composite-action@master
+        uses: beiertu/yamllint-composite-action@v1
 
       - name: Use linter output
         run: echo ${{ steps.yamllint.outputs.lint_output }}
 ```
 
-### Version
-
-This action also provide specific versions to be used with. For example
-
-```yaml
-- uses: beiertu/yamllint-composite-action@v1.0.0
-```
-
-See [this action releases][releases] for all available versions.
+See this action [releases][releases] or [tags][tags] for all available versions.
 
 [releases]: https://github.com/beiertu-mms/yamllint-composite-action/releases
+[tags]: https://github.com/beiertu-mms/yamllint-composite-action/tags
 
 ## Inputs
 
