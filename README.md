@@ -1,5 +1,8 @@
 # Yamllint Composite Action
 
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/beiertu-mms/yamllint-composite-action?style=flat-square)][releases]
+[![GitHub](https://img.shields.io/github/license/beiertu-mms/yamllint-composite-action?style=flat-square)](./LICENSE)
+
 A [GitHub composite action][gh-composite-action] to run [yamllint][yamllint], a linter for YAML files.
 
 [gh-composite-action]: https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
