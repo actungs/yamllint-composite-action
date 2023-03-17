@@ -82,7 +82,7 @@ runs:
         ${{ env.config_data }}
         ${{ env.strict }}
         ${{ env.no_warnings }}
-        > result.txt
+        > result.txt 2>&1
       shell: bash
 
     - id: output_result
