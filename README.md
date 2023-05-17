@@ -28,6 +28,7 @@ jobs:
         uses: beiertu/yamllint-composite-action@v1
 
       - name: Use linter output
+        if: always()
         run: echo ${{ steps.yamllint.outputs.lint_output }}
 ```
 
@@ -56,6 +57,10 @@ This action returns the following outputs.
 | Name          | Description                |
 |---------------|----------------------------|
 | `lint_output` | Result from yamllint check |
+
+**Note**: When using the output in a follow up step(s),
+one of these conditions `if: always()` or `if: success() || failure()` should be added,
+to prevent the step to be skipped when errors are found.
 
 ## License
 
