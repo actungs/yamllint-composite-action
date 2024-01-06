@@ -1,7 +1,7 @@
 # Yamllint Composite Action
 
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/beiertu-mms/yamllint-composite-action?style=flat-square)][releases]
-[![GitHub](https://img.shields.io/github/license/beiertu-mms/yamllint-composite-action?style=flat-square)](./LICENSE)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/actungs/yamllint-composite-action?style=flat-square)][releases]
+[![GitHub](https://img.shields.io/github/license/actungs/yamllint-composite-action?style=flat-square)](./LICENSE)
 
 A [GitHub composite action][gh-composite-action] to run [yamllint][yamllint], a linter for YAML files.
 
@@ -25,7 +25,7 @@ jobs:
 
       - name: Lint YAML
         id: yamllint
-        uses: beiertu/yamllint-composite-action@v1
+        uses: actungs/yamllint-composite-action@v1
 
       - name: Use linter output
         if: always()
@@ -34,8 +34,8 @@ jobs:
 
 See this action [releases][releases] or [tags][tags] for all available versions.
 
-[releases]: https://github.com/beiertu-mms/yamllint-composite-action/releases
-[tags]: https://github.com/beiertu-mms/yamllint-composite-action/tags
+[releases]: https://github.com/actungs/yamllint-composite-action/releases
+[tags]: https://github.com/actungs/yamllint-composite-action/tags
 
 ## Inputs
 
